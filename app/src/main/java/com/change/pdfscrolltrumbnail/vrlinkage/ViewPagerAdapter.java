@@ -1,4 +1,4 @@
-package com.change.pdfscrolltrumbnail;
+package com.change.pdfscrolltrumbnail.vrlinkage;
 
 import android.content.Context;
 import android.view.View;
