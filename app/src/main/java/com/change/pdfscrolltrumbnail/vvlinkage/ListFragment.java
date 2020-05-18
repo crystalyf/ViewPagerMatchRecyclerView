@@ -2,7 +2,6 @@ package com.change.pdfscrolltrumbnail.vvlinkage;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class ListFragment extends BaseFragment {
     private String mTitle = "";
 
     ViewPager mViewPager;
-
+    TextView tv_page;
     private List<Fragment> mFragments;
     private BaseFragmentAdapter mBaseAdapter;
     ScrollView mNoHorizontalScrollView;
@@ -52,6 +51,7 @@ public class ListFragment extends BaseFragment {
     protected void initView(View view) {
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mNoHorizontalScrollView = (ScrollView) view.findViewById(R.id.NoHorizontalScrollView);
+        tv_page = view.findViewById(R.id.tv_page);
         fl_child = view.findViewById(R.id.fl_child);
         Resources resources = this.getResources();
         fl_child.getLayoutParams().height = resources.getDisplayMetrics().heightPixels;
@@ -100,14 +100,14 @@ public class ListFragment extends BaseFragment {
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-             //   mTextView.setText(String.format("%d/" + mSize, position + 1));
+                tv_page.setText(String.format("%d/" + mSize, position + 1));
             }
         });
     }
 
     @Override
     protected void initData() {
-       // mTextView.setText(String.format("%d/" + mSize, 1));
+        tv_page.setText(String.format("%d/" + mSize, 1));
         Bundle arguments = getArguments();
         String title = "";
         if (arguments != null) {

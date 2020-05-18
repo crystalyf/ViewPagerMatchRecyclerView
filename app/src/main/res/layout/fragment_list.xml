@@ -8,7 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <TextView
+            android:id="@+id/tv_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/darker_gray"
+            android:gravity="right"
+            android:padding="10dp"
+            android:text="1/10"/>
         <FrameLayout
             android:id="@+id/fl_child"
             android:layout_width="match_parent"
@@ -19,7 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
             </com.change.pdfscrolltrumbnail.vvlinkage.widget.ChildViewPager>
+
+
+
 
         </FrameLayout>
 
