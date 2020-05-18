@@ -2,7 +2,6 @@ package com.change.pdfscrolltrumbnail.vvlinkage;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -25,24 +24,21 @@ public class ListFragment extends BaseFragment {
 
     static final String key = "key";
     public static final String TAG = "xujun";
-
-    private String mTitle = "";
-
     ViewPager mViewPager;
     TextView tv_page;
+
+    //当前Fragment渲染的所有数据源
+    ArrayList<? extends String> imgList;
     private List<Fragment> mFragments;
     private BaseFragmentAdapter mBaseAdapter;
     ScrollView mNoHorizontalScrollView;
     FrameLayout fl_child;
-    private int mSize = 4;
 
-    private int mScrollY;
-    private int mScrollX;
-
-    public static ListFragment newInstance(String title) {
+    public static ListFragment newInstance(ArrayList<String> imgList) {
         ListFragment listFragment = new ListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(key, title);
+        //Fragment附属参数
+        bundle.putStringArrayList(key, imgList);
         listFragment.setArguments(bundle);
         return listFragment;
     }
@@ -53,6 +49,7 @@ public class ListFragment extends BaseFragment {
         mNoHorizontalScrollView = (ScrollView) view.findViewById(R.id.NoHorizontalScrollView);
         tv_page = view.findViewById(R.id.tv_page);
         fl_child = view.findViewById(R.id.fl_child);
+        //set FrameLayout height
         Resources resources = this.getResources();
         fl_child.getLayoutParams().height = resources.getDisplayMetrics().heightPixels;
     }
@@ -64,7 +61,6 @@ public class ListFragment extends BaseFragment {
 
     @Override
     public void fetchData() {
-        Log.i(TAG, "fetchData: mTitle =" + mTitle);
         int scrollY = mNoHorizontalScrollView.getScrollY();
     }
 
@@ -78,19 +74,8 @@ public class ListFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        Log.i(TAG, "setUserVisibleHint: mTitle=" + mTitle + "  " + " isVisibleToUser=" +
-                isVisibleToUser);
         if (isVisibleToUser) {//表示界面可见
             if (mNoHorizontalScrollView != null) {// 之所以判断是否为空，
-                Log.i(TAG, "setUserVisibleHint: mTitle=" + mTitle + "  " + " isVisibleToUser=" +
-                        isVisibleToUser + "mScrollY=" + mScrollY);
-            }
-        } else {// 表示界面不可见
-            if (mNoHorizontalScrollView != null) {
-                mScrollX = mNoHorizontalScrollView.getScrollX();
-                mScrollY = mNoHorizontalScrollView.getScrollY();
-                Log.i(TAG, "setUserVisibleHint: mTitle=" + mTitle + "  " + " isVisibleToUser=" +
-                        isVisibleToUser + "mScrollY=" + mScrollY);
             }
         }
     }
@@ -100,23 +85,21 @@ public class ListFragment extends BaseFragment {
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                tv_page.setText(String.format("%d/" + mSize, position + 1));
+                tv_page.setText(String.format("%d/" + imgList.size(), position + 1));
             }
         });
     }
 
     @Override
     protected void initData() {
-        tv_page.setText(String.format("%d/" + mSize, 1));
         Bundle arguments = getArguments();
-        String title = "";
         if (arguments != null) {
-            title = arguments.getString(key);
-            mTitle = title;
+            imgList = arguments.getStringArrayList(key);
+            tv_page.setText(String.format("%d/" + imgList.size(), 1));
         }
         mFragments = new ArrayList<>();
-        for (int i = 0; i < mSize; i++) {
-            ImageFragment imageFragment = ImageFragment.newInstance(R.drawable.ic_launcher_background);
+        for (int i = 0; i < imgList.size(); i++) {
+            ImageFragment imageFragment = ImageFragment.newInstance(imgList.get(i));
             mFragments.add(imageFragment);
         }
         mBaseAdapter = new BaseFragmentAdapter(getChildFragmentManager()

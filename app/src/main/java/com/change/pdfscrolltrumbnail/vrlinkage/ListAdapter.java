@@ -51,7 +51,7 @@ public class ListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(mContext).inflate(R.layout.litem, null, false);
+        convertView = LayoutInflater.from(mContext).inflate(R.layout.item_listbase, null, false);
         ImageView iv = convertView.findViewById(R.id.iv);
         String url = list.get(position);
         Glide.with(mContext)

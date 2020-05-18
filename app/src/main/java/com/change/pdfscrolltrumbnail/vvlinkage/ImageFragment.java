@@ -1,7 +1,7 @@
 package com.change.pdfscrolltrumbnail.vvlinkage;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,25 +10,25 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.change.pdfscrolltrumbnail.R;
 
 /**
- * @ explain:
- * @ author：xujun on 2016/10/25 09:16
- * @ email：gdutxiaoxu@163.com
+ * Created by Fenrir-xingjunchao on 2020/5/18.
+ * <p>
+ * 装载每个滑动图片的Fragment
  */
 public class ImageFragment extends Fragment {
 
-    private Context mContext;
-    ImageView mDragImageView;
+    ImageView imageView;
+    public static final String KEY = "imageUrl";
+    //显示图片的url
+    private static String imgUrl = "";
 
-    public static final String KEY = "imageId";
-    private int mImageId = -1;
-
-    public static ImageFragment newInstance(int imageId) {
+    public static ImageFragment newInstance(String imgUrl) {
         ImageFragment imageFragment = new ImageFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(KEY, imageId);
+        bundle.putString(KEY, imgUrl);
         imageFragment.setArguments(bundle);
         return imageFragment;
     }
@@ -37,21 +37,15 @@ public class ImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mContext = container.getContext();
-        View view = View.inflate(mContext, R.layout.fragment_image, null);
-        mDragImageView = view.findViewById(R.id.imageView);
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        View view = View.inflate(container.getContext(), R.layout.fragment_image, null);
+        imageView = view.findViewById(R.id.imageView);
         Bundle arguments = getArguments();
         if (arguments != null) {
-            mImageId = arguments.getInt(KEY, -1);
-            if (mImageId != -1) {
-                mDragImageView.setImageResource(mImageId);
-            }
+            imgUrl = arguments.getString(KEY);
         }
+        if (!TextUtils.isEmpty(imgUrl)) {
+            Glide.with(container.getContext()).load(imgUrl).into(imageView);
+        }
+        return view;
     }
 }

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.change.pdfscrolltrumbnail.vrlinkage.VrLinkageActivity;
 import com.change.pdfscrolltrumbnail.vvlinkage.ViewPagerActivity;
+import com.change.pdfscrolltrumbnail.vvlinkage.VvLinkageActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent1);
                 break;
             case R.id.btn_vvlinkage:
-                Intent intent2 = new Intent(this, ViewPagerActivity.class);
+                Intent intent2 = new Intent(this, VvLinkageActivity.class);
                 startActivity(intent2);
                 break;
             default:

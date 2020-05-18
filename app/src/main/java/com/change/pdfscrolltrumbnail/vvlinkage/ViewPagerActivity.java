@@ -9,17 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.change.pdfscrolltrumbnail.R;
+import com.change.pdfscrolltrumbnail.vvlinkage.bean.LinkageImageBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPagerActivity extends AppCompatActivity {
 
     ViewPager mViewPager;
+    private List<LinkageImageBean> linkageBeanList;
     public static  final String TAG="xujun";
 
-    private final String[] mTitles=new String[]{
-            "首页","微博","相册","我的"
-    };
     private ArrayList<Fragment> mFragments;
 
     @Override
@@ -31,14 +31,15 @@ public class ViewPagerActivity extends AppCompatActivity {
     }
 
     private void initdata() {
+        linkageBeanList =  (List<LinkageImageBean>) getIntent().getSerializableExtra("imgList");
         mFragments = new ArrayList<>();
-        for(int i=0;i<mTitles.length;i++){
-            ListFragment listFragment = ListFragment.newInstance(mTitles[i]);
+        for(int i=0;i<linkageBeanList.size();i++){
+            ListFragment listFragment = ListFragment.newInstance((ArrayList<String>) linkageBeanList.get(i).getImgList());
             mFragments.add(listFragment);
 
         }
         BaseViewPagerAdapter baseViewPagerAdapter = new BaseViewPagerAdapter
-                (getSupportFragmentManager(), mFragments, mTitles);
+                (getSupportFragmentManager(), mFragments, new String[]{});
         mViewPager.setAdapter(baseViewPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override

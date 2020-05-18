@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".vrlinkage.PictureActivity" />
         <activity android:name=".vvlinkage.ViewPagerActivity" />
+        <activity android:name=".vvlinkage.VvLinkageActivity" />
     </application>
 
 </manifest>

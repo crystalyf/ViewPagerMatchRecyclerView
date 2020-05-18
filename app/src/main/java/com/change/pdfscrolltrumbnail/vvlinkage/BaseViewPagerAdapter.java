@@ -18,7 +18,6 @@ public class BaseViewPagerAdapter extends FragmentPagerAdapter {
 
     List<Fragment> mFragments = new ArrayList<>();
 
-    String[] mtitles;
 
     public BaseViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         this(fm,fragments,null);
@@ -27,7 +26,6 @@ public class BaseViewPagerAdapter extends FragmentPagerAdapter {
     public BaseViewPagerAdapter(FragmentManager fm, List<Fragment> fragments, String[] mtitles) {
         super(fm);
         this.mFragments = fragments;
-        this.mtitles=mtitles;
     }
 
 
@@ -44,6 +42,6 @@ public class BaseViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return mtitles[position];
+        return "";
     }
 }
