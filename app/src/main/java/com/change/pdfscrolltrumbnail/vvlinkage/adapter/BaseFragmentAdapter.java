@@ -1,4 +1,4 @@
-package com.change.pdfscrolltrumbnail.vvlinkage;
+package com.change.pdfscrolltrumbnail.vvlinkage.adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

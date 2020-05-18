@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.change.pdfscrolltrumbnail.R;
 import com.change.pdfscrolltrumbnail.vvlinkage.bean.LinkageImageBean;
-import com.change.pdfscrolltrumbnail.vvlinkage.widget.VvListAdapter;
+import com.change.pdfscrolltrumbnail.vvlinkage.adapter.VvListAdapter;
 
 import java.util.ArrayList;
 

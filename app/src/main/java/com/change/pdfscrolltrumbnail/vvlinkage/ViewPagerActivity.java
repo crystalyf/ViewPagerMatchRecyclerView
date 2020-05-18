@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.change.pdfscrolltrumbnail.R;
+import com.change.pdfscrolltrumbnail.vvlinkage.adapter.BaseViewPagerAdapter;
 import com.change.pdfscrolltrumbnail.vvlinkage.bean.LinkageImageBean;
 
 import java.util.ArrayList;

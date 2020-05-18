@@ -1,10 +1,12 @@
-package com.change.pdfscrolltrumbnail.vvlinkage;
+package com.change.pdfscrolltrumbnail.vvlinkage.adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.change.pdfscrolltrumbnail.vvlinkage.BaseRecyclerHolder;
 
 import java.util.ArrayList;
 import java.util.List;

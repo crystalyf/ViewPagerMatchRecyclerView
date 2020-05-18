@@ -1,4 +1,4 @@
-package com.change.pdfscrolltrumbnail.vvlinkage.widget;
+package com.change.pdfscrolltrumbnail.vvlinkage.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
