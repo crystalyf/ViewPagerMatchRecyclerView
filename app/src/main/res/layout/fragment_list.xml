@@ -4,37 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_page"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@android:color/darker_gray"
-            android:gravity="right"
-            android:padding="10dp"
-            android:text="1/10"/>
-        <FrameLayout
-            android:id="@+id/fl_child"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-            <com.change.pdfscrolltrumbnail.vvlinkage.widget.ChildViewPager
-                android:id="@+id/viewPager"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@android:color/darker_gray"
+                android:gravity="right"
+                android:padding="10dp"
+                android:text="1/10" />
+
+            <!-- 缩略小图的横向recyclerview  -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:background="#222637">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <FrameLayout
+                android:id="@+id/fl_child"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.change.pdfscrolltrumbnail.vvlinkage.widget.ChildViewPager
+                    android:id="@+id/viewPagerChild"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            </com.change.pdfscrolltrumbnail.vvlinkage.widget.ChildViewPager>
+                </com.change.pdfscrolltrumbnail.vvlinkage.widget.ChildViewPager>
 
+            </FrameLayout>
 
-
-
-        </FrameLayout>
-
-    </LinearLayout>
-
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </com.change.pdfscrolltrumbnail.vvlinkage.widget.VerticalScrollView>

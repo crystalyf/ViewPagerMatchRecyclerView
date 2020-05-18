@@ -9,9 +9,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.change.pdfscrolltrumbnail.R;
+import com.change.pdfscrolltrumbnail.vrlinkage.HorizontalAdapter;
 import com.change.pdfscrolltrumbnail.vvlinkage.adapter.BaseFragmentAdapter;
 
 import java.util.ArrayList;
@@ -25,15 +28,17 @@ public class ListFragment extends BaseFragment {
 
     static final String key = "key";
     public static final String TAG = "xujun";
-    ViewPager mViewPager;
+    ViewPager viewPagerChild;
     TextView tv_page;
-
     //当前Fragment渲染的所有数据源
-    ArrayList<? extends String> imgList;
+    ArrayList<String> imgList;
     private List<Fragment> mFragments;
     private BaseFragmentAdapter mBaseAdapter;
     ScrollView mNoHorizontalScrollView;
     FrameLayout fl_child;
+
+    private RecyclerView recyclerview;
+    private HorizontalAdapter horizontalAdapter;
 
     public static ListFragment newInstance(ArrayList<String> imgList) {
         ListFragment listFragment = new ListFragment();
@@ -46,8 +51,9 @@ public class ListFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        viewPagerChild = (ViewPager) view.findViewById(R.id.viewPagerChild);
         mNoHorizontalScrollView = (ScrollView) view.findViewById(R.id.NoHorizontalScrollView);
+        recyclerview = view.findViewById(R.id.recyclerview);
         tv_page = view.findViewById(R.id.tv_page);
         fl_child = view.findViewById(R.id.fl_child);
         //set FrameLayout height
@@ -83,7 +89,7 @@ public class ListFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        viewPagerChild.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 tv_page.setText(String.format("%d/" + imgList.size(), position + 1));
@@ -105,9 +111,36 @@ public class ListFragment extends BaseFragment {
         }
         mBaseAdapter = new BaseFragmentAdapter(getChildFragmentManager()
                 , mFragments);
-        mViewPager.setAdapter(mBaseAdapter);
+        viewPagerChild.setAdapter(mBaseAdapter);
         //     是为了确保mNoHorizontalScrollView他的子孙不能获得焦点
         mNoHorizontalScrollView.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+
+        //创建底部横向滚动的adapter
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerview.setLayoutManager(linearLayoutManager);
+        horizontalAdapter = new HorizontalAdapter(getActivity(), imgList);
+        recyclerview.setAdapter(horizontalAdapter);
+        viewPagerChild.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                recyclerview.smoothScrollToPosition(position);
+                horizontalAdapter.setBg(position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        horizontalAdapter.setOnItemClickListener(new HorizontalAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(View view, int position) {
+                viewPagerChild.setCurrentItem(position);
+            }
+        });
     }
 
     public void onSelected() {
