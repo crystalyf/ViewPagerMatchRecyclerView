@@ -3,7 +3,6 @@ package com.change.pdfscrolltrumbnail.vvlinkage;
 import android.os.Bundle;
 import android.util.Log;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -19,7 +18,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     ViewPager mViewPager;
     private List<LinkageImageBean> linkageBeanList;
-    public static  final String TAG="xujun";
+    public static final String TAG = "xujun";
 
     private ArrayList<Fragment> mFragments;
 
@@ -32,9 +31,9 @@ public class ViewPagerActivity extends AppCompatActivity {
     }
 
     private void initdata() {
-        linkageBeanList =  (List<LinkageImageBean>) getIntent().getSerializableExtra("imgList");
+        linkageBeanList = (List<LinkageImageBean>) getIntent().getSerializableExtra("imgList");
         mFragments = new ArrayList<>();
-        for(int i=0;i<linkageBeanList.size();i++){
+        for (int i = 0; i < linkageBeanList.size(); i++) {
             ListFragment listFragment = ListFragment.newInstance((ArrayList<String>) linkageBeanList.get(i).getImgList());
             mFragments.add(listFragment);
 
@@ -42,17 +41,17 @@ public class ViewPagerActivity extends AppCompatActivity {
         BaseViewPagerAdapter baseViewPagerAdapter = new BaseViewPagerAdapter
                 (getSupportFragmentManager(), mFragments, new String[]{});
         mViewPager.setAdapter(baseViewPagerAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                ((ListFragment)mFragments.get(position)).onSelected();
-                Log.i(TAG, "onPageSelected: position=" +position);
+                ((ListFragment) mFragments.get(position)).onSelected();
+                Log.i(TAG, "onPageSelected: position=" + position);
             }
         });
     }
 
     private void initView() {
-        mViewPager=(ViewPager)findViewById(R.id.viewPager);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
     }
 }

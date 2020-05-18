@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.change.pdfscrolltrumbnail.R;
 import com.change.pdfscrolltrumbnail.vrlinkage.HorizontalAdapter;
-import com.change.pdfscrolltrumbnail.vvlinkage.adapter.BaseFragmentAdapter;
+import com.change.pdfscrolltrumbnail.vvlinkage.adapter.BaseViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class ListFragment extends BaseFragment {
     //当前Fragment渲染的所有数据源
     ArrayList<String> imgList;
     private List<Fragment> mFragments;
-    private BaseFragmentAdapter mBaseAdapter;
+    private BaseViewPagerAdapter mBaseAdapter;
     ScrollView mNoHorizontalScrollView;
     FrameLayout fl_child;
 
@@ -109,7 +109,7 @@ public class ListFragment extends BaseFragment {
             ImageFragment imageFragment = ImageFragment.newInstance(imgList.get(i));
             mFragments.add(imageFragment);
         }
-        mBaseAdapter = new BaseFragmentAdapter(getChildFragmentManager()
+        mBaseAdapter = new BaseViewPagerAdapter(getChildFragmentManager()
                 , mFragments);
         viewPagerChild.setAdapter(mBaseAdapter);
         //     是为了确保mNoHorizontalScrollView他的子孙不能获得焦点

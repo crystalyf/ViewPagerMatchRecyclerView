@@ -26,12 +26,6 @@ public class VerticalScrollView extends ScrollView {
         super(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(21)
-    public VerticalScrollView(Context context, AttributeSet attrs, int defStyleAttr, int
-            defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     private float mDownPosX = 0;
     private float mDownPosY = 0;
 

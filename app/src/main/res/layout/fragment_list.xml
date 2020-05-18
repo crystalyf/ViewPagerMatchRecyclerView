@@ -4,10 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,5 +43,4 @@
             </FrameLayout>
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 </com.change.pdfscrolltrumbnail.vvlinkage.widget.VerticalScrollView>
