@@ -30,7 +30,6 @@ public class ListFragment extends BaseFragment {
     static final String key = "key";
     public static final String TAG = "xujun";
     ViewPager viewPagerChild;
-    TextView tv_page;
     //当前Fragment渲染的所有数据源
     ArrayList<String> imgList;
     private List<Fragment> mFragments;
@@ -55,7 +54,6 @@ public class ListFragment extends BaseFragment {
         viewPagerChild = (ViewPager) view.findViewById(R.id.viewPagerChild);
         mNoHorizontalScrollView = (ScrollView) view.findViewById(R.id.NoHorizontalScrollView);
         recyclerview = view.findViewById(R.id.recyclerview);
-        tv_page = view.findViewById(R.id.tv_page);
         fl_child = view.findViewById(R.id.fl_child);
         //set FrameLayout height
         Resources resources = this.getResources();
@@ -93,7 +91,7 @@ public class ListFragment extends BaseFragment {
         viewPagerChild.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                tv_page.setText(String.format("%d/" + imgList.size(), position + 1));
+              //  tv_page.setText(String.format("%d/" + imgList.size(), position + 1));
             }
         });
     }
@@ -103,7 +101,7 @@ public class ListFragment extends BaseFragment {
         Bundle arguments = getArguments();
         if (arguments != null) {
             imgList = arguments.getStringArrayList(key);
-            tv_page.setText(String.format("%d/" + imgList.size(), 1));
+          //  tv_page.setText(String.format("%d/" + imgList.size(), 1));
         }
         mFragments = new ArrayList<>();
         for (int i = 0; i < imgList.size(); i++) {

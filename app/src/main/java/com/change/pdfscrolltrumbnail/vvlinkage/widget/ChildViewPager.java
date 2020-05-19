@@ -38,11 +38,12 @@ public class ChildViewPager extends ViewPager {
 //                全部由孩子拦截触摸事件
 /*                getParent().requestDisallowInterceptTouchEvent(true);*/
                 // 当当前页面在最后一页和第0页的时候，由父亲拦截触摸事件
-                if (curPosition == count - 1 || curPosition == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                } else {//其他情况，由孩子拦截触摸事件
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
+//                if (curPosition == count - 1 || curPosition == 0) {
+//                    getParent().requestDisallowInterceptTouchEvent(false);
+//                } else {//其他情况，由孩子拦截触摸事件(true的话，在孩子控件上下滑动，孩子就拦截了，纵向scrollview就不会响应上下滑动)
+//                    getParent().requestDisallowInterceptTouchEvent(false);
+//                }
+                getParent().requestDisallowInterceptTouchEvent(false);
         }
         return super.dispatchTouchEvent(ev);
     }
