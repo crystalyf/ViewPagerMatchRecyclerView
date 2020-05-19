@@ -48,6 +48,10 @@ public class VvLinkageActivity extends AppCompatActivity {
         imgList2.add("http://img1.imgtn.bdimg.com/it/u=1806680339,1258257998&fm=26&gp=0.jpg");
         imgList2.add("http://img5.imgtn.bdimg.com/it/u=3238317745,514710292&fm=26&gp=0.jpg");
         imgList2.add("http://img1.imgtn.bdimg.com/it/u=2658872482,510079581&fm=26&gp=0.jpg");
+
+        imgList2.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=188173295,510375359&fm=26&gp=0.jpg");
+        imgList2.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3225163326,3627210682&fm=26&gp=0.jpg");
+        imgList2.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104686528,572431609&fm=26&gp=0.jpg");
         lbean2.setImgList(imgList2);
         imgBeanList.add(lbean2);
 
