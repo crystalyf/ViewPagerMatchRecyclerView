@@ -1,6 +1,8 @@
 package com.change.pdfscrolltrumbnail.vrlinkage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 public class VrLinkageActivity extends AppCompatActivity {
 
     private ArrayList<String> smallList;
-    private ListView listview;
+    private RecyclerView rv_list;
     private ArrayList<String> bigList;
     //图片所用资源list
     private ArrayList<String> imgList = new ArrayList<>();
@@ -46,12 +48,13 @@ public class VrLinkageActivity extends AppCompatActivity {
         bigList.add(imgList.get(3));
         bigList.add(imgList.get(4));
 
-        listview = (ListView) findViewById(R.id.listview);
+        rv_list = (RecyclerView) findViewById(R.id.rv_list);
         ListAdapter adapter = new ListAdapter(VrLinkageActivity.this,smallList);
-        listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        rv_list.setLayoutManager(new LinearLayoutManager(this));
+        rv_list.setAdapter(adapter);
+        adapter.setOnItemClickListener(new ListAdapter.OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 Intent intent = new Intent(VrLinkageActivity.this, PictureActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",position);
@@ -61,5 +64,17 @@ public class VrLinkageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(VrLinkageActivity.this, PictureActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("position",position);
+//                bundle.putStringArrayList("smallList",smallList);
+//                bundle.putStringArrayList("bigList",bigList);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

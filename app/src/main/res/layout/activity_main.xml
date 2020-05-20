@@ -12,12 +12,14 @@
         android:id="@+id/btn_vrlinkage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:text="viewpager+Recyclerview联动"/>
 
     <Button
         android:id="@+id/btn_vvlinkage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:text="viewpager嵌套+Recyclerview联动"/>
 
 </LinearLayout>
