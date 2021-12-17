@@ -14,6 +14,9 @@ import com.change.pdfscrolltrumbnail.vvlinkage.bean.LinkageImageBean;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 具体的viewpager嵌套+Recyclerview联动画面
+ */
 public class ViewPagerActivity extends AppCompatActivity {
 
     ViewPager mViewPager;
@@ -33,19 +36,13 @@ public class ViewPagerActivity extends AppCompatActivity {
     private void initdata() {
         linkageBeanList = (List<LinkageImageBean>) getIntent().getSerializableExtra("imgList");
         mFragments = new ArrayList<>();
-        for (int i = 0; i < linkageBeanList.size(); i++) {
-            ListFragment listFragment = ListFragment.newInstance((ArrayList<String>) linkageBeanList.get(i).getImgList());
-            mFragments.add(listFragment);
-
-        }
         BaseViewPagerAdapter baseViewPagerAdapter = new BaseViewPagerAdapter
-                (getSupportFragmentManager(), mFragments, new String[]{});
+                (getSupportFragmentManager(), linkageBeanList, new String[]{},getResources().getConfiguration().orientation);
         mViewPager.setAdapter(baseViewPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                ((ListFragment) mFragments.get(position)).onSelected();
                 Log.i(TAG, "onPageSelected: position=" + position);
             }
         });

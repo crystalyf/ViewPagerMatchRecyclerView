@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 /**
  * Created by fenrir-xjc on 2020/05/14.
+ *
+ * viewpager嵌套+Recyclerview联动之前的画面的RecyclerView Adapter
  */
 public class VvListAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;

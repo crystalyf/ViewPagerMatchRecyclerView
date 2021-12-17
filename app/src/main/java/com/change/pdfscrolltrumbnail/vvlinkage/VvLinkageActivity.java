@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 /**
  * Main button 点击之后进入此画面
+ *
+ * viewpager嵌套+Recyclerview联动之前的画面
  */
 public class VvLinkageActivity extends AppCompatActivity {
 
@@ -34,7 +36,6 @@ public class VvLinkageActivity extends AppCompatActivity {
 
     private void initView() {
         rv_list = findViewById(R.id.rv_list);
-
         ArrayList<String> imgList1 = new ArrayList<>();
         LinkageImageBean lbean1 = new LinkageImageBean();
         imgList1.add("http://img1.imgtn.bdimg.com/it/u=1760283799,1689150510&fm=26&gp=0.jpg");
@@ -75,7 +76,7 @@ public class VvLinkageActivity extends AppCompatActivity {
         imgBeanList.add(lbean5);
 
         //每个插图集的集合(ListAdapter负责渲染每个bean的第一张图显示在此画面)
-        adapter = new VvListAdapter(VvLinkageActivity.this, imgBeanList);
+        adapter = new VvListAdapter( VvLinkageActivity.this, imgBeanList);
         rv_list.setLayoutManager(new LinearLayoutManager(this));
         rv_list.setAdapter(adapter);
         adapter.setOnItemClickListener(new VvListAdapter.OnItemClickListener() {

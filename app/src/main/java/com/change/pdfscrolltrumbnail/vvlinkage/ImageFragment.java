@@ -22,12 +22,20 @@ public class ImageFragment extends Fragment {
 
     ImageView imageView;
     public static final String KEY = "imageUrl";
+    static final String fragmentKey = "fragmentKey";
+    String fragmentTag = "";
+
     //显示图片的url
     private static String imgUrl = "";
 
-    public static ImageFragment newInstance(String imgUrl) {
+    public String getFragmentTag() {
+        return fragmentTag;
+    }
+
+    public static ImageFragment newInstance(String imgUrl, String fragmentTag) {
         ImageFragment imageFragment = new ImageFragment();
         Bundle bundle = new Bundle();
+        bundle.putString(fragmentKey, fragmentTag);
         bundle.putString(KEY, imgUrl);
         imageFragment.setArguments(bundle);
         return imageFragment;

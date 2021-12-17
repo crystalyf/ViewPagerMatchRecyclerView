@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.change.pdfscrolltrumbnail.R;
 import com.change.pdfscrolltrumbnail.vrlinkage.HorizontalAdapter;
 import com.change.pdfscrolltrumbnail.vvlinkage.adapter.BaseViewPagerAdapter;
+import com.change.pdfscrolltrumbnail.vvlinkage.adapter.BaseViewPagerAdapterChild;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,23 +28,31 @@ import java.util.List;
  */
 public class ListFragment extends BaseFragment {
 
-    static final String key = "key";
+    static final String key = "dataKey";
     public static final String TAG = "xujun";
     ViewPager viewPagerChild;
     //当前Fragment渲染的所有数据源
     ArrayList<String> imgList;
     private List<Fragment> mFragments;
-    private BaseViewPagerAdapter mBaseAdapter;
+    private BaseViewPagerAdapterChild mBaseAdapter;
     ScrollView mNoHorizontalScrollView;
     FrameLayout fl_child;
 
     private RecyclerView recyclerview;
     private HorizontalAdapter horizontalAdapter;
 
-    public static ListFragment newInstance(ArrayList<String> imgList) {
+    static final String fragmentKey = "fragmentKey";
+    String fragmentTag = "";
+
+    public String getFragmentTag(){
+        return fragmentTag;
+    }
+
+    public static ListFragment newInstance(ArrayList<String> imgList, String fragmentTag) {
         ListFragment listFragment = new ListFragment();
         Bundle bundle = new Bundle();
         //Fragment附属参数
+        bundle.putString(fragmentKey, fragmentTag);
         bundle.putStringArrayList(key, imgList);
         listFragment.setArguments(bundle);
         return listFragment;
@@ -103,13 +112,8 @@ public class ListFragment extends BaseFragment {
             imgList = arguments.getStringArrayList(key);
           //  tv_page.setText(String.format("%d/" + imgList.size(), 1));
         }
-        mFragments = new ArrayList<>();
-        for (int i = 0; i < imgList.size(); i++) {
-            ImageFragment imageFragment = ImageFragment.newInstance(imgList.get(i));
-            mFragments.add(imageFragment);
-        }
-        mBaseAdapter = new BaseViewPagerAdapter(getChildFragmentManager()
-                , mFragments);
+        mBaseAdapter = new BaseViewPagerAdapterChild(getChildFragmentManager()
+                , imgList);
         viewPagerChild.setAdapter(mBaseAdapter);
         //     是为了确保mNoHorizontalScrollView他的子孙不能获得焦点
         mNoHorizontalScrollView.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
@@ -142,7 +146,4 @@ public class ListFragment extends BaseFragment {
         });
     }
 
-    public void onSelected() {
-
-    }
 }
